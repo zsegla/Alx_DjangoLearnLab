@@ -1,3 +1,22 @@
+from django.contrib.auth.decorators import user_passes_test, login_required
+from .models import UserProfile
+# Admin view
+@login_required
+@user_passes_test(lambda u: hasattr(u, 'userprofile') and u.userprofile.role == 'Admin')
+def admin_view(request):
+	return render(request, 'relationship_app/admin_view.html')
+
+# Librarian view
+@login_required
+@user_passes_test(lambda u: hasattr(u, 'userprofile') and u.userprofile.role == 'Librarian')
+def librarian_view(request):
+	return render(request, 'relationship_app/librarian_view.html')
+
+# Member view
+@login_required
+@user_passes_test(lambda u: hasattr(u, 'userprofile') and u.userprofile.role == 'Member')
+def member_view(request):
+	return render(request, 'relationship_app/member_view.html')
 from django.contrib.auth import login
 from django.contrib.auth.forms import UserCreationForm
 
