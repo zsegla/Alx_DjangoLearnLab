@@ -1,3 +1,6 @@
+# --- Secure Proxy SSL Header ---
+# Use this setting if your Django app is behind a proxy/load balancer that sets 'X-Forwarded-Proto' header
+SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 """
 Django settings for LibraryProject project.
 
