@@ -123,6 +123,7 @@ USE_TZ = True
 
 STATIC_URL = 'static/'
 
+
 # --- Security Best Practices ---
 # Enable browser XSS filter
 SECURE_BROWSER_XSS_FILTER = True
@@ -133,6 +134,15 @@ SECURE_CONTENT_TYPE_NOSNIFF = True
 # Ensure cookies are only sent over HTTPS
 CSRF_COOKIE_SECURE = True
 SESSION_COOKIE_SECURE = True
+
+# --- HTTPS and Secure Redirects ---
+# Redirect all HTTP requests to HTTPS
+SECURE_SSL_REDIRECT = True
+# HTTP Strict Transport Security (HSTS): force browsers to use HTTPS
+SECURE_HSTS_SECONDS = 31536000  # 1 year
+SECURE_HSTS_INCLUDE_SUBDOMAINS = True
+SECURE_HSTS_PRELOAD = True
+
 # Content Security Policy (CSP) example (uncomment if using django-csp)
 # CSP_DEFAULT_SRC = ("'self'",)
 # CSP_SCRIPT_SRC = ("'self'",)
