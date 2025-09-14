@@ -22,10 +22,12 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = 'django-insecure-o+9ojxutc^wxc!v6b^s=00do9a-g#91bea0)^x%0dz=dvpwcf6'
 
-# SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
 
-ALLOWED_HOSTS = []
+# SECURITY WARNING: Set DEBUG to False in production for security
+DEBUG = False
+
+# Set allowed hosts for production
+ALLOWED_HOSTS = ['yourdomain.com', 'localhost', '127.0.0.1']
 
 
 # Application definition
@@ -49,6 +51,8 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    # Content Security Policy (CSP) middleware (requires django-csp)
+    # 'csp.middleware.CSPMiddleware',
 ]
 
 ROOT_URLCONF = 'LibraryProject.urls'
@@ -114,9 +118,29 @@ USE_TZ = True
 
 
 # Static files (CSS, JavaScript, Images)
+# Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.2/howto/static-files/
 
 STATIC_URL = 'static/'
+
+# --- Security Best Practices ---
+# Enable browser XSS filter
+SECURE_BROWSER_XSS_FILTER = True
+# Prevent the site from being rendered in a frame (clickjacking protection)
+X_FRAME_OPTIONS = 'DENY'
+# Prevent the browser from guessing content types
+SECURE_CONTENT_TYPE_NOSNIFF = True
+# Ensure cookies are only sent over HTTPS
+CSRF_COOKIE_SECURE = True
+SESSION_COOKIE_SECURE = True
+# Content Security Policy (CSP) example (uncomment if using django-csp)
+# CSP_DEFAULT_SRC = ("'self'",)
+# CSP_SCRIPT_SRC = ("'self'",)
+# CSP_STYLE_SRC = ("'self'",)
+# CSP_IMG_SRC = ("'self'",)
+# CSP_FONT_SRC = ("'self'",)
+# CSP_CONNECT_SRC = ("'self'",)
+# CSP_FRAME_SRC = ("'none'",)
 
 # Default primary key field type
 # Default primary key field type
