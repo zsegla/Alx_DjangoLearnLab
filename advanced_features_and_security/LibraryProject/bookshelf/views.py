@@ -3,7 +3,17 @@ from django.shortcuts import render, get_object_or_404, redirect
 from django.contrib.auth.decorators import permission_required, login_required
 
 from .models import Book
-from .forms import BookForm
+from .forms import BookForm, ExampleForm
+# Example form view
+def form_example(request):
+	if request.method == 'POST':
+		form = ExampleForm(request.POST)
+		if form.is_valid():
+			# Process form.cleaned_data as needed
+			return render(request, 'bookshelf/form_example.html', {'form': form, 'success': True})
+	else:
+		form = ExampleForm()
+	return render(request, 'bookshelf/form_example.html', {'form': form})
 
 # View to list books (requires can_view permission)
 @permission_required('bookshelf.can_view', raise_exception=True)
