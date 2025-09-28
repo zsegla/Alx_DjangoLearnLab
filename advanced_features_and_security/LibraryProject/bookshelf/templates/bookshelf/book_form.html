@@ -1,5 +1,0 @@
-<h2>{% if book %}Edit{% else %}Create{% endif %} Book</h2>
-<form method="post">
-  {% csrf_token %} {{ form.as_p }}
-  <button type="submit">Save</button>
-</form>
