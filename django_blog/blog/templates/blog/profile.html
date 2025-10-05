@@ -1,0 +1,12 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Profile</title>
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+</head>
+<body>
+    <h1>Welcome, {{ user.username }}</h1>
+    <img src="{% static 'images/profile-pic.png' %}" alt="Profile Picture">
+</body>
+</html>
